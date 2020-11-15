@@ -7,6 +7,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.alperb.yoyocinema"
         minSdkVersion versions.minSdkVersion
@@ -15,6 +20,9 @@ android {
         versionName versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", "\"https://developers.themoviedb.org/3\""
+        buildConfigField "String", "API_KEY", "\"4cb1eeab94f45affe2536f2c684a5c9e\""
     }
 
     buildTypes {
@@ -43,6 +51,12 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:${libraries.dagger}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libraries.coroutine}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libraries.coroutine}"
+    implementation "com.squareup.retrofit2:retrofit:${libraries.retrofit}"
+    implementation "com.squareup.okhttp3:okhttp:${libraries.okhttp}"
+    implementation "com.squareup.moshi:moshi:${libraries.moshi}"
+    implementation "com.squareup.retrofit2:converter-moshi:${libraries.moshiconverter}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${libraries.moshi}"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${libraries.junit}"
