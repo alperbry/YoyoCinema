@@ -1,6 +1,6 @@
 package com.alperb.yoyocinema.di
 
-import com.alperb.yoyocinema.MainActivity
+import com.alperb.yoyocinema.splash.SplashActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -8,5 +8,5 @@ import javax.inject.Singleton
 @Component(modules = [DispatcherModule::class, NetworkModule::class])
 interface AppComponent {
 
-    fun inject(activity: MainActivity)
+    fun inject(activity: SplashActivity)
 }
