@@ -59,6 +59,7 @@ dependencies {
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${libraries.moshi}"
     implementation "androidx.viewpager2:viewpager2:${libraries.viewPager2}"
     implementation "com.google.android.material:material:${libraries.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${libraries.constraintlayout}"
 
 
     testImplementation 'junit:junit:4.12'

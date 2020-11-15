@@ -20,9 +20,14 @@ abstract class BaseActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompat
         binding = DataBindingUtil.setContentView(this, getResourceLayoutId())
         binding.lifecycleOwner = this
         bindVariables()
+        attachViewModelObservers()
     }
 
     open fun bindVariables() {
         // no-op
+    }
+
+    open fun attachViewModelObservers() {
+
     }
 }

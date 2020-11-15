@@ -23,11 +23,17 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         homeComponent = (application as YoyoCinemaApp).appComponent.homeComponent().create()
         homeComponent.inject(this)
         super.onCreate(savedInstanceState)
+
+        initializeViewPager()
     }
 
     override fun bindVariables() {
         super.bindVariables()
         binding.setVariable(BR.viewModel, viewModel)
+    }
+
+    private fun initializeViewPager() {
+        binding.activityHomeViewPager.adapter = HomePagerAdapter(this)
     }
 
 }
