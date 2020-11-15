@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -38,6 +39,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${libraries.kotlin}"
     implementation "androidx.core:core-ktx:${libraries.ktx}"
     implementation "androidx.appcompat:appcompat:${libraries.appcompat}"
+    implementation "com.google.dagger:dagger:${libraries.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${libraries.dagger}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${libraries.junit}"

@@ -16,7 +16,8 @@ buildscript {
             appcompat           : "1.2.0",
             constraintlayout    : "2.0.4",
             junit               : "1.1.2",
-            espresso            : "3.3.0"
+            espresso            : "3.3.0",
+            dagger              : "2.27"
     ]
 
     repositories {
