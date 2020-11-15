@@ -41,6 +41,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${libraries.appcompat}"
     implementation "com.google.dagger:dagger:${libraries.dagger}"
     kapt "com.google.dagger:dagger-compiler:${libraries.dagger}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libraries.coroutine}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libraries.coroutine}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${libraries.junit}"

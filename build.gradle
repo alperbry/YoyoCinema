@@ -12,12 +12,13 @@ buildscript {
     ext.libraries = [
             kotlin              : "1.4.10",
             agp                 : '4.0.1',
-            ktx                 : "1.3.1",
+            ktx                 : "1.3.2",
             appcompat           : "1.2.0",
             constraintlayout    : "2.0.4",
             junit               : "1.1.2",
             espresso            : "3.3.0",
-            dagger              : "2.27"
+            dagger              : "2.27",
+            coroutine           : "1.3.9"
     ]
 
     repositories {
