@@ -24,14 +24,14 @@ fun SearchView.getQueriedText(): String? {
 fun SearchView.onQueryTextChanged(attrChanged: InverseBindingListener) {
     setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
-            return true
+            return false
         }
 
         override fun onQueryTextChange(newText: String?): Boolean {
             DebouncedSingleJobHandler.post({
                 attrChanged.onChange()
-            }, 200)
-            return true
+            }, 1000)
+            return false
         }
     })
 }

@@ -10,18 +10,20 @@ class YoyoMovieOverview(
     val voteAverage: Double?,
     val releaseDate: String?
 ) {
-    fun getInstance(model: MovieOverview): YoyoMovieOverview? {
-        if (model.id == null || model.title == null) {
-            return null
-        }
+    companion object {
+        fun getInstance(model: MovieOverview): YoyoMovieOverview? {
+            if (model.id == null || model.title == null) {
+                return null
+            }
 
-        return YoyoMovieOverview(
-            model.id,
-            model.title,
-            model.posterPath,
-            model.adult,
-            model.voteAverage,
-            model.releaseDate
-        )
+            return YoyoMovieOverview(
+                model.id,
+                model.title,
+                model.poster_path,
+                model.adult,
+                model.vote_average,
+                model.release_date
+            )
+        }
     }
 }

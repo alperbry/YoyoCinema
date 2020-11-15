@@ -24,7 +24,8 @@ buildscript {
             moshi               : "1.9.3",
             moshiconverter      : "2.9.0",
             viewPager2          : "1.0.0",
-            material            : "1.2.1"
+            material            : "1.2.1",
+            lifecycle           : "2.2.0"
     ]
 
     repositories {

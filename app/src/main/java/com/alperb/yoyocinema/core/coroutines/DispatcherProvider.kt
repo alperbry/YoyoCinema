@@ -2,6 +2,7 @@ package com.alperb.yoyocinema.core.coroutines
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 import javax.inject.Singleton
 
 interface DispatcherProvider {
@@ -17,7 +18,7 @@ interface DispatcherProvider {
 }
 
 @Singleton
-class DefaultDispatcherProvider: DispatcherProvider {
+class DefaultDispatcherProvider @Inject constructor(): DispatcherProvider {
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main
 
