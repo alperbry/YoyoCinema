@@ -12,10 +12,20 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/fragmentSearchViewSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:queryText="@={viewModel.queriedMovie}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.queriedMovie}"
+            app:layout_constraintTop_toBottomOf="@id/fragmentSearchViewSearch"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
