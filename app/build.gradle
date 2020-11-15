@@ -57,6 +57,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi:${libraries.moshi}"
     implementation "com.squareup.retrofit2:converter-moshi:${libraries.moshiconverter}"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${libraries.moshi}"
+    implementation "androidx.viewpager2:viewpager2:${libraries.viewPager2}"
 
 
     testImplementation 'junit:junit:4.12'

@@ -1,4 +1,4 @@
-package com.alperb.yoyocinema.splash
+package com.alperb.yoyocinema.feature.splash
 
 import javax.inject.Inject
 

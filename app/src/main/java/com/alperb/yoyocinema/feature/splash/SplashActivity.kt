@@ -1,4 +1,4 @@
-package com.alperb.yoyocinema.splash
+package com.alperb.yoyocinema.feature.splash
 
 import android.os.Bundle
 import android.os.PersistableBundle

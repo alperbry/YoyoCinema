@@ -1,4 +1,4 @@
-package com.alperb.yoyocinema.splash
+package com.alperb.yoyocinema.feature.splash
 
 import com.alperb.yoyocinema.core.BaseViewModel
 import javax.inject.Inject
