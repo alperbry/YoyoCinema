@@ -14,10 +14,9 @@ fun RecyclerView.setItemList(itemList: List<RecyclerModelWrapper>?) {
 
     if (currentAdapter != null) {
         val existingList = currentAdapter.recyclerModelWrapperList
-        currentAdapter.recyclerModelWrapperList = itemList
+        currentAdapter.recyclerModelWrapperList = itemList.orEmpty()
         currentAdapter.autoNotify(existingList, itemList)
     }
 
-    adapter = GenericRecyclerViewAdapter(itemList)
-    layoutManager = LinearLayoutManager(context)    //fixme
+    adapter = GenericRecyclerViewAdapter(itemList.orEmpty())
 }

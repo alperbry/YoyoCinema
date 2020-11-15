@@ -12,4 +12,14 @@
         <item name="android:textColor">@color/c_c0c0c0</item>
     </style>
 
+    <style name="YoyoAppTextAppearance.DashboardTitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/c_c0c0c0</item>
+    </style>
+
+    <style name="YoyoAppTextAppearance.DashboardDetail">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/c_c0c0c0</item>
+    </style>
+
 </resources>
