@@ -5,6 +5,7 @@ import com.alperb.yoyocinema.feature.home.HomeActivity
 import com.alperb.yoyocinema.feature.search.SearchMovieFragment
 import dagger.Subcomponent
 
+@ActivityScope
 @Subcomponent
 interface HomeComponent {
 
