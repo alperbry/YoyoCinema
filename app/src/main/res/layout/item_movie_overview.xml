@@ -7,15 +7,21 @@
             name="viewModel"
             type="com.alperb.yoyocinema.feature.movie.MovieItemPresentation" />
     </data>
-    <FrameLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imageUrl="@{viewModel.movieOverview.posterPath}"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.title}"/>
+            android:text="@{viewModel.movieOverview.title}"/>
 
-    </FrameLayout>
+    </LinearLayout>
 
 </layout>

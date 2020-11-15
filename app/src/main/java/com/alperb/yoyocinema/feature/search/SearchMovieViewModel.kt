@@ -21,7 +21,7 @@ class SearchMovieViewModel @Inject constructor(useCase: SearchMovieUseCase) : Ba
             val result = useCase.searchMovie(query)
             if (result is UIState.Success) {
                 val list = result.data.map {
-                    MovieItemPresentationWrapper(MovieItemPresentation(it.title))}
+                    MovieItemPresentationWrapper(MovieItemPresentation(it))}
                 emit(list)
             } else {
                 null

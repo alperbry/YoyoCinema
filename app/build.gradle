@@ -22,6 +22,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500/\""
         buildConfigField "String", "API_KEY", "\"4cb1eeab94f45affe2536f2c684a5c9e\""
     }
 
@@ -63,6 +64,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${libraries.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${libraries.lifecycle}"
     implementation "com.squareup.moshi:moshi-kotlin:1.11.0"
+    implementation "com.squareup.picasso:picasso:${libraries.picasso}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${libraries.junit}"

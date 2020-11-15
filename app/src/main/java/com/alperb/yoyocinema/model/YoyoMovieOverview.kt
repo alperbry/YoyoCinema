@@ -1,5 +1,6 @@
 package com.alperb.yoyocinema.model
 
+import com.alperb.yoyocinema.BuildConfig
 import com.alperb.yoyocinema.network.model.MovieOverview
 
 class YoyoMovieOverview(
@@ -19,7 +20,7 @@ class YoyoMovieOverview(
             return YoyoMovieOverview(
                 model.id,
                 model.title,
-                model.poster_path,
+                "${BuildConfig.BASE_IMAGE_URL}${model.poster_path}",
                 model.adult,
                 model.vote_average,
                 model.release_date
