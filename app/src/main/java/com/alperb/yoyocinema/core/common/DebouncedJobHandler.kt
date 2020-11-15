@@ -1,20 +1,22 @@
 package com.alperb.yoyocinema.core.common
 
-import android.os.Handler
-import android.os.Looper
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 
 // fixme get from dependency graph
 object DebouncedSingleJobHandler {
-    private val handler = Handler(Looper.getMainLooper())
+    private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 
-    private var currentRunnable: Runnable? = null
+    private var currentJob: Job? = null
 
-    fun post(runnable: Runnable, delay: Long) {
-        currentRunnable?.let { handler.removeCallbacks(it) }
-        currentRunnable = runnable
-        handler.postDelayed({
-            runnable.run()
-            currentRunnable = null
-        }, delay)
+    fun post(block: () -> Unit, delay: Long) {
+        currentJob?.cancel()
+        currentJob = coroutineScope.launch(Dispatchers.Main) {
+            delay(delay)
+            block.invoke()
+        }
     }
 }

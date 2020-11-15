@@ -31,7 +31,7 @@ fun SearchView.onQueryTextChanged(attrChanged: InverseBindingListener) {
             DebouncedSingleJobHandler.post({
                 attrChanged.onChange()
             }, 1000)
-            return false
+            return true
         }
     })
 }

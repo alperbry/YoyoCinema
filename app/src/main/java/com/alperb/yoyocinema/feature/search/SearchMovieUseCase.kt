@@ -22,4 +22,3 @@ class SearchMovieUseCase @Inject constructor(val repository: MoviesRepository) :
     }
 
 }
-
