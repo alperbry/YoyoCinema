@@ -1,11 +1,12 @@
 package com.alperb.yoyocinema.feature.splash
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseActivity
 import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.databinding.ActivitySplashBinding
+import com.alperb.yoyocinema.feature.home.HomeActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
@@ -15,9 +16,15 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun getResourceLayoutId() = R.layout.activity_splash
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         (application as YoyoCinemaApp).appComponent.inject(this)
-        super.onCreate(savedInstanceState, persistentState)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //fixme dummy navigation
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
 }

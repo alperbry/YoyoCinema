@@ -2,6 +2,7 @@ package com.alperb.yoyocinema.feature.home
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import com.alperb.yoyocinema.BR
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseActivity
 import com.alperb.yoyocinema.core.YoyoCinemaApp
@@ -18,10 +19,15 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
 
     override fun getResourceLayoutId() = R.layout.activity_home
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         homeComponent = (application as YoyoCinemaApp).appComponent.homeComponent().create()
         homeComponent.inject(this)
-        super.onCreate(savedInstanceState, persistentState)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun bindVariables() {
+        super.bindVariables()
+        binding.setVariable(BR.viewModel, viewModel)
     }
 
 }

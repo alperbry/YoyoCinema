@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="YoyoAppTextAppearance" parent="TextAppearance.AppCompat" />
+
+    <style name="YoyoAppTextAppearance.NavigationActive">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="YoyoAppTextAppearance.NavigationInactive">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/c_c0c0c0</item>
+    </style>
+
+</resources>
