@@ -85,7 +85,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
-            app:itemList="@{viewModel.movieList}"
+            app:itemList="@{viewModel.movieListPresentationList}"
             app:spacing="@{12}"
             app:layout_constraintTop_toBottomOf="@id/fragmentSearchViewSearch"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,7 @@
 package com.alperb.yoyocinema.core
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,10 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.alperb.yoyocinema.core.common.UIState
+import com.alperb.yoyocinema.core.common.loading.DefaultLoadingObserver
+import com.alperb.yoyocinema.core.common.loading.LoadingFragment
+import com.alperb.yoyocinema.core.common.loading.LoadingOwner
 
 abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment() {
 
@@ -16,6 +21,8 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
     abstract val viewModel: VM
 
     @LayoutRes abstract fun getResourceLayoutId(): Int
+
+    val loadingObserver = DefaultLoadingObserver() //fixme add to di graph
 
     open fun bindVariables() {
         // no-op
@@ -30,5 +37,10 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
         bindVariables()
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadingObserver.startObserving(this, viewModel, requireActivity())
     }
 }
