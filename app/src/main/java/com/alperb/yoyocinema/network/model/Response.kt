@@ -1,7 +1,9 @@
 package com.alperb.yoyocinema.network.model
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 data class MovieSearchResponse(
@@ -54,20 +56,22 @@ data class Cast(
 )
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 data class Language(
     @Json(name = "iso_639_1") val iso: String?,
     @Json(name = "name") val name: String?
-)
+) : Parcelable
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 data class Country(
     @Json(name = "iso_3166_1") val iso: String?,
     @Json(name = "name") val name: String?
-)
+) : Parcelable
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 data class Genre(
     @Json(name = "id") val id: String?,
     @Json(name = "name") val name: String?
-)
-
+) : Parcelable

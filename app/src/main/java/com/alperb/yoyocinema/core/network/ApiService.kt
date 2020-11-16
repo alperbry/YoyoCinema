@@ -15,7 +15,7 @@ interface ApiService {
         @Query("language") language: String
     ): MovieSearchResponse?
 
-    @GET("movie")
+    @GET("movie/{movie_id}")
     suspend fun fetchMovieDetails(
         @Path("movie_id") movieId: Int,
         @Query("language") language: String

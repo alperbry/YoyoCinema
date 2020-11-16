@@ -6,6 +6,7 @@ import com.alperb.yoyocinema.core.common.UIState
 import com.alperb.yoyocinema.di.ActivityScope
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentation
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentationWrapper
+import com.alperb.yoyocinema.model.YoyoMovieDetail
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import javax.inject.Inject
 
@@ -16,6 +17,8 @@ class SearchMovieViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val queriedMovie: MutableLiveData<String?> = MutableLiveData()
+
+    val selectedMovieId: MutableLiveData<Int> = MutableLiveData()
 
     val movieListState: LiveData<UIState<List<YoyoMovieOverview>>> = Transformations.switchMap(queriedMovie) { query ->
         liveData {
@@ -34,10 +37,17 @@ class SearchMovieViewModel @Inject constructor(
         }
     }
 
-    override val loadingObservableList: List<LiveData<*>> = listOf(movieListState)
+    val movieDetailState: LiveData<UIState<YoyoMovieDetail?>> = Transformations.switchMap(selectedMovieId) { id ->
+        liveData {
+            emit(UIState.Loading)
+            emit(fetchMovieDetailsUseCase.fetchMovieDetails(id))
+        }
+    }
+
+    override val loadingObservableList: List<LiveData<*>> = listOf(movieListState, movieDetailState)
 
     fun onMovieItemClick(id: Int) {
-        // todo fetch movie details and navigate
+        selectedMovieId.value = id
     }
 
 }
