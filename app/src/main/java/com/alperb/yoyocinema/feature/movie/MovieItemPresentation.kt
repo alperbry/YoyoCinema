@@ -7,10 +7,15 @@ import com.alperb.yoyocinema.model.YoyoMovieOverview
 
 private const val DATE_SPLIT_CHAR = '-'
 class MovieItemPresentation(
-    val movieOverview: YoyoMovieOverview
+    val movieOverview: YoyoMovieOverview,
+    private val onClickAction: (Int) -> Unit
 ) : RecyclerComponentPresentation() {
 
     val releaseYear = movieOverview.releaseDate?.split(DATE_SPLIT_CHAR)?.firstOrNull()
+
+    fun onClick() {
+        onClickAction.invoke(movieOverview.id)
+    }
 }
 
 class MovieItemPresentationWrapper(

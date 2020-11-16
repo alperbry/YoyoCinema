@@ -7,7 +7,10 @@ import com.alperb.yoyocinema.feature.movie.MovieItemPresentation
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentationWrapper
 import javax.inject.Inject
 
-class SearchMovieViewModel @Inject constructor(useCase: SearchMovieUseCase) : BaseViewModel() {
+class SearchMovieViewModel @Inject constructor(
+    searchMovieUseCase: SearchMovieUseCase,
+    val fetchMovieDetailsUseCase: FetchMovieDetailsUseCase
+) : BaseViewModel() {
 
     val queriedMovie: MutableLiveData<String?> = MutableLiveData()
 
@@ -18,15 +21,19 @@ class SearchMovieViewModel @Inject constructor(useCase: SearchMovieUseCase) : Ba
                 emit(null)
                 return@liveData
             }
-            val result = useCase.searchMovie(query)
+            val result = searchMovieUseCase.searchMovie(query)
             if (result is UIState.Success) {
                 val list = result.data.map {
-                    MovieItemPresentationWrapper(MovieItemPresentation(it))}
+                    MovieItemPresentationWrapper(MovieItemPresentation(it, ::onMovieItemClick))}
                 emit(list)
             } else {
                 null
             }
         }
+    }
+
+    fun onMovieItemClick(id: Int) {
+        // todo fetch movie details and navigate
     }
 
 }

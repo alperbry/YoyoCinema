@@ -7,6 +7,8 @@ import com.alperb.yoyocinema.core.network.FailureHandler
 import com.alperb.yoyocinema.core.network.Response
 import com.alperb.yoyocinema.core.network.SuccessHandler
 import com.alperb.yoyocinema.di.ActivityScope
+import com.alperb.yoyocinema.network.model.MovieCredits
+import com.alperb.yoyocinema.network.model.MovieDetail
 import com.alperb.yoyocinema.network.model.MovieOverview
 import javax.inject.Inject
 
@@ -21,6 +23,18 @@ class MoviesRepository @Inject constructor(
     suspend fun searchMovie(query: String): Response<List<MovieOverview?>?> {
         return apiCall {
             apiService.searchForMovies(query, language = "en")?.results //fixme
+        }
+    }
+
+    suspend fun fetchMovieDetails(movieId: Int): Response<MovieDetail?> {
+        return apiCall {
+            apiService.fetchMovieDetails(movieId, language = "en")
+        }
+    }
+
+    suspend fun fetchMovieCredits(movieId: Int): Response<MovieCredits?> {
+        return apiCall {
+            apiService.fetchCreditsOfMovie(movieId, language = "en")
         }
     }
 }
