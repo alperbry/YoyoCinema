@@ -29,21 +29,4 @@ class SearchMovieViewModel @Inject constructor(useCase: SearchMovieUseCase) : Ba
         }
     }
 
-    /*val movieNameToShow: LiveData<String> = Transformations.switchMap(queriedMovie) { query ->
-        liveData {
-            //emit(UIState.Loading) to be added
-            if (query == null) {
-                emit(null)
-                return@liveData
-            }
-            val result = useCase.searchMovie(query)
-            if (result is UIState.Success) {
-                emit(result.data.firstOrNull()?.title)
-            } else {
-                null
-            }
-        }
-
-    }*/
-
 }
