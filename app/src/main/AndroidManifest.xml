@@ -24,7 +24,8 @@
 
         <activity
             android:name="com.alperb.yoyocinema.feature.home.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 
