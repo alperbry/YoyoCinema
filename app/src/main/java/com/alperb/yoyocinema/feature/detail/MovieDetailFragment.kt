@@ -2,6 +2,7 @@ package com.alperb.yoyocinema.feature.detail
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import com.alperb.yoyocinema.BR
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseFragment
@@ -31,6 +32,11 @@ class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDeta
         super.onAttach(context)
         val homeComponent = (requireActivity().application as YoyoCinemaApp).appComponent.homeComponent().create()
         homeComponent.inject(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.initialize(arguments?.getParcelable(KEY_MOVIE_DETAILS))
     }
 
     companion object {
