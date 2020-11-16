@@ -1,4 +1,7 @@
 package com.alperb.yoyocinema.feature.detail
 
-class MovieDetailViewModel {
+import com.alperb.yoyocinema.core.BaseViewModel
+import javax.inject.Inject
+
+class MovieDetailViewModel @Inject constructor() : BaseViewModel() {
 }

@@ -6,7 +6,7 @@ import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseActivity
 import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.databinding.ActivitySplashBinding
-import com.alperb.yoyocinema.feature.home.HomeActivity
+import com.alperb.yoyocinema.feature.home.HomeHostActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
@@ -24,7 +24,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override fun onStart() {
         super.onStart()
         //fixme dummy navigation
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, HomeHostActivity::class.java))
     }
 
 }

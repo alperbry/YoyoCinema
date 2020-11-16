@@ -1,8 +1,6 @@
 package com.alperb.yoyocinema.feature.home
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.alperb.yoyocinema.BR
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseActivity
 import com.alperb.yoyocinema.core.YoyoCinemaApp
@@ -10,7 +8,8 @@ import com.alperb.yoyocinema.databinding.ActivityHomeBinding
 import com.alperb.yoyocinema.di.HomeComponent
 import javax.inject.Inject
 
-class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
+// fixme no action view model
+class HomeHostActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
 
     lateinit var homeComponent: HomeComponent
 
@@ -24,16 +23,19 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         homeComponent.inject(this)
         super.onCreate(savedInstanceState)
 
-        initializeViewPager()
+        initalizeHomeScreen()
     }
 
-    override fun bindVariables() {
-        super.bindVariables()
-        binding.setVariable(BR.viewModel, viewModel)
-    }
-
-    private fun initializeViewPager() {
-        binding.activityHomeViewPager.adapter = HomePagerAdapter(this)
+    private fun initalizeHomeScreen() {
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        transaction.replace(
+            R.id.activityHomeContainer,
+            HomeFragment.newInstance(),
+            null
+        )
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }

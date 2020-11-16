@@ -1,6 +1,5 @@
 package com.alperb.yoyocinema.feature.home
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alperb.yoyocinema.feature.favorite.FavoriteMoviesFragment
@@ -10,8 +9,8 @@ import java.lang.IllegalArgumentException
 private const val HOME_PAGE_ITEM_COUNT = 2
 
 class HomePagerAdapter(
-    activity: AppCompatActivity
-) : FragmentStateAdapter(activity) {
+    fragment: Fragment
+) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount() = HOME_PAGE_ITEM_COUNT
 

@@ -9,6 +9,8 @@ import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.core.common.UIState
 import com.alperb.yoyocinema.databinding.FragmentSearchBinding
 import com.alperb.yoyocinema.di.HomeComponent
+import com.alperb.yoyocinema.feature.detail.MovieDetailFragment
+import com.alperb.yoyocinema.feature.home.HomeFragment
 import javax.inject.Inject
 
 class SearchMovieFragment : BaseFragment<SearchMovieViewModel, FragmentSearchBinding>() {
@@ -32,8 +34,20 @@ class SearchMovieFragment : BaseFragment<SearchMovieViewModel, FragmentSearchBin
 
     override fun attachViewModelObservers() {
         viewModel.movieDetailState.observe(this) {
-            if (it is UIState.Success) {
+            if (it is UIState.Success && it.data != null) {
                 Log.d("deneme", it.data?.originalTitle.orEmpty())
+                val manager = requireActivity().supportFragmentManager//requireFragmentManager()//supportFragmentManager
+                val transaction = manager.beginTransaction()
+                transaction.replace(
+                    R.id.activityHomeContainer,
+                    MovieDetailFragment.newInstance(it.data),
+                    null
+                )
+                transaction.addToBackStack(null)
+                transaction.commit()
+                //viewModel.movieDetailState.value = null
+            } else {
+                // todo
             }
         }
     }
