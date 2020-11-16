@@ -9,6 +9,7 @@ import com.alperb.yoyocinema.core.BaseFragment
 import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.databinding.FragmentHomeBinding
 import com.alperb.yoyocinema.di.HomeComponent
+import com.alperb.yoyocinema.di.ViewModelFactory
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
@@ -16,9 +17,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     lateinit var homeComponent: HomeComponent
 
     @Inject
-    override lateinit var viewModel: HomeViewModel
+    override lateinit var viewModelFactory: ViewModelFactory
 
     override fun getResourceLayoutId() = R.layout.fragment_home
+
+    override fun getViewModelClazz() = HomeViewModel::class.java
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

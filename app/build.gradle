@@ -65,6 +65,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${libraries.lifecycle}"
     implementation "com.squareup.moshi:moshi-kotlin:1.11.0"
     implementation "com.squareup.picasso:picasso:${libraries.picasso}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:${libraries.lifecycle}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${libraries.junit}"

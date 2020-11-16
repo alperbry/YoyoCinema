@@ -1,5 +1,7 @@
 package com.alperb.yoyocinema.di
 
+import java.lang.annotation.ElementType
+import java.lang.annotation.RetentionPolicy
 import javax.inject.Scope
 
 @Scope

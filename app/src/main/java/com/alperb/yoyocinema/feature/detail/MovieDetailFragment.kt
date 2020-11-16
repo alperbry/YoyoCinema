@@ -7,6 +7,7 @@ import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseFragment
 import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.databinding.FragmentMovieDetailBinding
+import com.alperb.yoyocinema.di.ViewModelFactory
 import com.alperb.yoyocinema.model.YoyoMovieDetail
 import javax.inject.Inject
 
@@ -15,9 +16,11 @@ private const val KEY_MOVIE_DETAILS = "keyMovieDetails"
 class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDetailBinding>() {
 
     @Inject
-    override lateinit var viewModel: MovieDetailViewModel
+    override lateinit var viewModelFactory: ViewModelFactory
 
     override fun getResourceLayoutId() = R.layout.fragment_movie_detail
+
+    override fun getViewModelClazz() = MovieDetailViewModel::class.java
 
     override fun bindVariables() {
         super.bindVariables()

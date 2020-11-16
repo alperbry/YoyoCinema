@@ -8,7 +8,7 @@ import com.alperb.yoyocinema.feature.search.SearchMovieFragment
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent
+@Subcomponent(modules = [HomeViewModelsModule::class])
 interface HomeComponent {
 
     @Subcomponent.Factory

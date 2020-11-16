@@ -9,6 +9,7 @@ import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.core.common.UIState
 import com.alperb.yoyocinema.databinding.FragmentSearchBinding
 import com.alperb.yoyocinema.di.HomeComponent
+import com.alperb.yoyocinema.di.ViewModelFactory
 import com.alperb.yoyocinema.feature.detail.MovieDetailFragment
 import com.alperb.yoyocinema.feature.home.HomeFragment
 import javax.inject.Inject
@@ -18,9 +19,11 @@ class SearchMovieFragment : BaseFragment<SearchMovieViewModel, FragmentSearchBin
     lateinit var homeComponent: HomeComponent
 
     @Inject
-    override lateinit var viewModel: SearchMovieViewModel
+    override lateinit var viewModelFactory: ViewModelFactory
 
     override fun getResourceLayoutId() = R.layout.fragment_search
+
+    override fun getViewModelClazz() = SearchMovieViewModel::class.java
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

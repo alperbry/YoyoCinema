@@ -1,5 +1,6 @@
 package com.alperb.yoyocinema.feature.search
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.UIState
@@ -15,6 +16,9 @@ class SearchMovieViewModel @Inject constructor(
     searchMovieUseCase: SearchMovieUseCase,
     val fetchMovieDetailsUseCase: FetchMovieDetailsUseCase
 ) : BaseViewModel() {
+    init {
+        Log.d("deneme", "init")
+    }
 
     val queriedMovie: MutableLiveData<String?> = MutableLiveData()
 
