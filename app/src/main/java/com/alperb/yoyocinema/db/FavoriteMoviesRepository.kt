@@ -34,4 +34,10 @@ class FavoriteMoviesRepository @Inject constructor(
             moviesDao.get(id)
         }
     }
+
+    suspend fun getFavoriteMoviesList(): Response<List<MovieOverviewEntity>?> {
+        return apiCall {
+            moviesDao.getAll()
+        }
+    }
 }

@@ -24,6 +24,15 @@ class YoyoMovieOverview(
         movieDetail.releaseDate
     )
 
+    constructor(movieOverviewEntity: MovieOverviewEntity) : this(
+        movieOverviewEntity.id,
+        movieOverviewEntity.title,
+        movieOverviewEntity.posterPath,
+        movieOverviewEntity.adult,
+        movieOverviewEntity.voteAverage,
+        movieOverviewEntity.releaseDate
+    )
+
     companion object {
         fun getInstance(model: MovieOverview): YoyoMovieOverview? {
             if (model.id == null || model.title == null) {
