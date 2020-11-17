@@ -41,28 +41,44 @@ class SearchMovieViewModel @Inject constructor(
             }
         }
 
+    private val _movieList = Transformations.map(movieListState) {
+        return@map if (it is UIState.Success) {
+            it.data
+        } else {
+            null
+        }
+    }
+
+
     private val sortedMovieListState: LiveData<UIState<List<YoyoMovieOverview>>> =
         Transformations.switchMap(selectedSortingOption) { sortOption ->
             liveData {
                 if (movieListState.value is UIState.Success) {
-                    emit(sortMovieListUseCase.sortMovieList(
-                        (movieListState.value as UIState.Success<List<YoyoMovieOverview>>).data, sortOption)
-                    )
+                    _movieList.value?.let { movieList ->
+                        emit(sortMovieListUseCase.sortMovieList(
+                            movieList, sortOption)
+                        )
+                    }
                 }
             }
         }
 
-    private val movieListMediator : MediatorLiveData<UIState<List<YoyoMovieOverview>>> =
-        MediatorLiveData<UIState<List<YoyoMovieOverview>>>()
+    private val _sortedMovieList =
+        Transformations.map(sortedMovieListState) {
+            return@map if (it is UIState.Success) {
+                it.data
+            } else {
+                null
+            }
+        }
+
+    private val movieListMediator : MediatorLiveData<List<YoyoMovieOverview>?> =
+        MediatorLiveData<List<YoyoMovieOverview>?>()
 
     val movieListPresentationList =
         Transformations.map(movieListMediator) { result ->
-            if (result is UIState.Success) {
-                result.data.map {
-                    MovieItemPresentationWrapper(MovieItemPresentation(it, ::onMovieItemClick))
-                }
-            } else {
-                null
+            result?.map {
+                MovieItemPresentationWrapper(MovieItemPresentation(it, ::onMovieItemClick))
             }
         }
 
@@ -71,10 +87,10 @@ class SearchMovieViewModel @Inject constructor(
     override val loadingObservableList: List<LiveData<*>> = listOf(movieListState)
 
     init {
-        movieListMediator.addSource(movieListState) {
+        movieListMediator.addSource(_movieList) {
             movieListMediator.value = it
         }
-        movieListMediator.addSource(sortedMovieListState) {
+        movieListMediator.addSource(_sortedMovieList) {
             movieListMediator.value = it
         }
     }
