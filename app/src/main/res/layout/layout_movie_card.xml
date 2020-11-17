@@ -117,8 +117,7 @@
             android:layout_height="wrap_content"
             android:textOff="Add To Favorites"
             android:textOn="Remove From Favorites"
-            android:checked="@={viewModel.initialFavoriteStatus}"
-            android:onCheckedChanged="@{viewModel::onFavoriteToggleChecked}"
+            android:checked="@={viewModel.isMovieCheckedAsFavorite}"
             app:layout_constraintBottom_toBottomOf="@id/card1"
             app:layout_constraintStart_toStartOf="@id/card1"
             app:layout_constraintEnd_toEndOf="@id/card1" />

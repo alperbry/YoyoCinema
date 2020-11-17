@@ -1,6 +1,5 @@
 package com.alperb.yoyocinema.feature.detail
 
-import android.widget.CompoundButton
 import androidx.lifecycle.*
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.ToolbarModel
@@ -14,6 +13,7 @@ import com.alperb.yoyocinema.model.YoyoMovieDetail
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import com.alperb.yoyocinema.network.model.Genre
 import com.alperb.yoyocinema.R
+import com.alperb.yoyocinema.core.common.extensions.orFalse
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -50,9 +50,9 @@ class MovieDetailViewModel @Inject constructor(
             }
         }
 
-    val initialFavoriteStatus = MutableLiveData(false)
+    val isMovieCheckedAsFavorite = MutableLiveData(false)
 
-    private var isCheckedAsFavorite = false
+    private var initialFavorite: Boolean? = null
 
     val genreText = Transformations.map(movieDetail) { movieDetail ->
        generateGenreText(movieDetail?.genres)
@@ -75,28 +75,27 @@ class MovieDetailViewModel @Inject constructor(
         updateFavoriteStatusPersistently()
     }
 
-    fun onFavoriteToggleChecked(button: CompoundButton, checked: Boolean) {
-        isCheckedAsFavorite = checked
-    }
-
     private fun setInitialFavoriteStatus(movieId: Int) {
         viewModelScope.launch {
             val state = checkFavoriteMovieUseCase.checkFavoriteMovie(movieId)
             if (state is UIState.Success) {
-                initialFavoriteStatus.value = state.data
-                isCheckedAsFavorite = state.data
+                isMovieCheckedAsFavorite.value = state.data
+                initialFavorite = state.data
             }
         }
     }
 
-    //fixme
+    //fixme refactor
     private fun updateFavoriteStatusPersistently() {
-        //if (isCheckedAsFavorite == initialFavoriteStatus.value) return
+        if (initialFavorite != null
+            && isMovieCheckedAsFavorite.value == initialFavorite) {
+            return
+        }
         viewModelScope.launch {
             movieDetail.value?.let {
                 updateFavoriteMovieUseCase.updateFavoriteMovie(
                     YoyoMovieOverview(it),
-                    isCheckedAsFavorite
+                    isMovieCheckedAsFavorite.value.orFalse()
                 )
             }
         }
