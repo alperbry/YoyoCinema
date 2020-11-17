@@ -1,6 +1,9 @@
 package com.alperb.yoyocinema.model
 
 import android.os.Parcelable
+import androidx.annotation.DrawableRes
+import com.alperb.yoyocinema.BuildConfig
+import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.network.model.Cast
 import kotlinx.android.parcel.Parcelize
 
@@ -8,7 +11,8 @@ import kotlinx.android.parcel.Parcelize
 class YoyoCast(
     val name: String,
     val character: String,
-    val profileImageUrl: String?
+    val profileImageUrl: String?,
+    @DrawableRes val placeholderResource: Int? = R.drawable.ic_launcher_background
 ) : Parcelable {
     companion object {
         fun newInstance(cast: Cast?): YoyoCast? {
@@ -16,7 +20,7 @@ class YoyoCast(
                 YoyoCast(
                     cast.name,
                     cast.character,
-                    cast.profile_path
+                    "${BuildConfig.BASE_IMAGE_URL}${cast.profile_path}"
                 )
             } else null
         }

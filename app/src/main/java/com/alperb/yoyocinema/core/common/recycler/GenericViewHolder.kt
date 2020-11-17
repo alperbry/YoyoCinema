@@ -11,6 +11,7 @@ import com.alperb.yoyocinema.BR
 class GenericViewHolder(
     @LayoutRes layoutRes: Int,
     parentView: ViewGroup,
+    private val variableResId: Int = BR.viewModel,
     private val binding: ViewDataBinding = DataBindingUtil.inflate(
         LayoutInflater.from(parentView.context),
         layoutRes,
@@ -20,7 +21,7 @@ class GenericViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(presentation: RecyclerComponentPresentation) {
-        binding.setVariable(BR.viewModel, presentation)
+        binding.setVariable(variableResId, presentation)
     }
 
 }

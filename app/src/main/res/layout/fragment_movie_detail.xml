@@ -51,6 +51,7 @@
 
             <TextView
                 style="@style/YoyoAppTextAppearance.GreyLight.Message"
+                android:id="@+id/fragmentMovieDetailOverview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.movieDetail.overview}"
@@ -60,6 +61,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailSynopsisTitle"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                style="@style/YoyoAppTextAppearance.GreyLight.Title"
+                android:id="@+id/fragmentMovieDetailCastTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Cast"
+                tools:text="Cast"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailOverview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:itemList="@{viewModel.castItemList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:spacing="@{viewModel.castItemSpacing}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailCastTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

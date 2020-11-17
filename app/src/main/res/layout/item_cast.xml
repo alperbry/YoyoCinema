@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.alperb.yoyocinema.feature.movie.CastItemPresentation" />
+    </data>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:elevation="8dp"
+        android:background="@drawable/item_background_stroked">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            app:imageUrl="@{viewModel.cast.profileImageUrl}"
+            app:placeholderResource="@{viewModel.cast.placeholderResource}"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/YoyoAppTextAppearance.CastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="6dp"
+            android:layout_marginTop="6dp"
+            android:text="@{viewModel.cast.name}"
+            tools:text="Anna Karina"/>
+
+        <TextView
+            style="@style/YoyoAppTextAppearance.CastCharacter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{viewModel.cast.character}"
+            android:layout_marginBottom="4dp"
+            tools:text="Nana"/>
+
+    </LinearLayout>
+
+</layout>
