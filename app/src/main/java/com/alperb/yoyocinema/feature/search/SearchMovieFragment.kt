@@ -34,21 +34,17 @@ class SearchMovieFragment : BaseFragment<SearchMovieViewModel, FragmentSearchBin
     }
 
     override fun attachViewModelObservers() {
-        viewModel.movieDetailState.observe(this) {
-            if (it is UIState.Success && it.data != null) {
-                val manager = requireActivity().supportFragmentManager//requireFragmentManager()//supportFragmentManager
-                val transaction = manager.beginTransaction()
-                transaction.replace(
-                    R.id.activityHomeContainer,
-                    MovieDetailFragment.newInstance(it.data),
-                    null
-                )
-                transaction.addToBackStack(null)
-                transaction.commit()
-                //viewModel.movieDetailState.value = null
-            } else {
-                // todo
-            }
+        //fixme add generic navigation solution
+        viewModel.navigate.observe(viewLifecycleOwner) { id ->
+            val manager = requireActivity().supportFragmentManager
+            val transaction = manager.beginTransaction()
+            transaction.replace(
+                R.id.activityHomeContainer,
+                MovieDetailFragment.newInstance(id),
+                null
+            )
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 

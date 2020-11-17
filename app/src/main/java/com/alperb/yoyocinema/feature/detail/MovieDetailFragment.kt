@@ -9,10 +9,9 @@ import com.alperb.yoyocinema.core.BaseFragment
 import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.databinding.FragmentMovieDetailBinding
 import com.alperb.yoyocinema.di.ViewModelFactory
-import com.alperb.yoyocinema.model.YoyoMovieDetail
 import javax.inject.Inject
 
-private const val KEY_MOVIE_DETAILS = "keyMovieDetails"
+private const val KEY_MOVIE_ID = "keyMovieId"
 
 class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDetailBinding>() {
 
@@ -36,7 +35,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDeta
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.initialize(arguments?.getParcelable(KEY_MOVIE_DETAILS))
+        viewModel.initialize(arguments?.getInt(KEY_MOVIE_ID))
     }
 
     override fun onStop() {
@@ -45,10 +44,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDeta
     }
 
     companion object {
-        fun newInstance(movieDetails: YoyoMovieDetail): MovieDetailFragment {
+        fun newInstance(movieId: Int): MovieDetailFragment {
             return MovieDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(KEY_MOVIE_DETAILS, movieDetails)
+                    putInt(KEY_MOVIE_ID, movieId)
                 }
             }
         }

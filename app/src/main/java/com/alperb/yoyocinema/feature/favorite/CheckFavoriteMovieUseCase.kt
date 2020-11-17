@@ -13,8 +13,8 @@ class CheckFavoriteMovieUseCase @Inject constructor(
     dispatcherProvider: DispatcherProvider
 ) : BaseUseCase(dispatcherProvider) {
 
-    suspend fun checkFavoriteMovie(yoyoMovieDetail: YoyoMovieDetail): UIState<Boolean> {
-        return handleResponse(repository.getFavoriteMovie(yoyoMovieDetail.id)) {
+    suspend fun checkFavoriteMovie(movieId: Int): UIState<Boolean> {
+        return handleResponse(repository.getFavoriteMovie(movieId)) {
             it != null
         }
     }
