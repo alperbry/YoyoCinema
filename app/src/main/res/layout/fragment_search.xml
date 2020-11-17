@@ -67,15 +67,36 @@
                     </LinearLayout>
                 </FrameLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/fragmentSearchViewSearch"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:queryText="@={viewModel.queriedMovie}"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:orientation="vertical">
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/fragmentSearchViewSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:queryText="@={viewModel.queriedMovie}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:checkedButton="@={viewModel.checkedSortingRadioButton}">
+                    <RadioButton android:id="@+id/radioButtonSortPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Point"/>
+                    <RadioButton android:id="@+id/radioButtonSortName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name (A-Z)"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView

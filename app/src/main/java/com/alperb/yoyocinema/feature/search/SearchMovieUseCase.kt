@@ -17,7 +17,7 @@ class SearchMovieUseCase @Inject constructor(
 ) : BaseUseCase(dispatcherProvider) {
 
     //fixme divide into small functions
-    suspend fun searchMovie(query: String, movieSortModel: MovieSortModel): UIState<List<YoyoMovieOverview>> {
+    suspend fun searchMovie(query: String, movieSortModel: MovieSortModel?): UIState<List<YoyoMovieOverview>> {
         return withContext(dispatcherProvider.default) {
             val movieList = repository.searchMovie(query)
             handleResponse(movieList) { movieOverviewList ->
@@ -26,7 +26,9 @@ class SearchMovieUseCase @Inject constructor(
                         YoyoMovieOverview.getInstance(it)
                     }
                 }.orEmpty()
-                movieSorter.sort(list, movieSortModel.sortingOption, movieSortModel.isReverse)
+                movieSortModel?.let {
+                    movieSorter.sort(list, movieSortModel.sortingOption, movieSortModel.isReverse)
+                } ?: list
             }
         }
     }

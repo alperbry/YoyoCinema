@@ -1,7 +1,6 @@
 package com.alperb.yoyocinema.feature.search
 
 import android.content.Context
-import android.util.Log
 import com.alperb.yoyocinema.BR
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseFragment
@@ -11,7 +10,6 @@ import com.alperb.yoyocinema.databinding.FragmentSearchBinding
 import com.alperb.yoyocinema.di.HomeComponent
 import com.alperb.yoyocinema.di.ViewModelFactory
 import com.alperb.yoyocinema.feature.detail.MovieDetailFragment
-import com.alperb.yoyocinema.feature.home.HomeFragment
 import javax.inject.Inject
 
 class SearchMovieFragment : BaseFragment<SearchMovieViewModel, FragmentSearchBinding>() {
