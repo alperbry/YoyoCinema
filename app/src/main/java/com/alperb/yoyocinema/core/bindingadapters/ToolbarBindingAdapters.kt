@@ -10,6 +10,7 @@ fun Toolbar.setModel(model: ToolbarModel) {
     val activity = context as AppCompatActivity
     activity.setSupportActionBar(this)
     activity.supportActionBar?.setDisplayHomeAsUpEnabled(model.navIcon != null)
+    model.titleRes?.let { activity.supportActionBar?.setTitle(it) }
     setNavigationOnClickListener { activity.onBackPressed() }
 
 }

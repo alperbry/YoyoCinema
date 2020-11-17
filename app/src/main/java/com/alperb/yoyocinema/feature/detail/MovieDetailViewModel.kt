@@ -3,6 +3,7 @@ package com.alperb.yoyocinema.feature.detail
 import android.widget.CompoundButton
 import androidx.lifecycle.*
 import com.alperb.yoyocinema.core.BaseViewModel
+import com.alperb.yoyocinema.core.common.ToolbarModel
 import com.alperb.yoyocinema.core.common.UIState
 import com.alperb.yoyocinema.feature.favorite.CheckFavoriteMovieUseCase
 import com.alperb.yoyocinema.feature.favorite.UpdateFavoriteMovieUseCase
@@ -12,6 +13,7 @@ import com.alperb.yoyocinema.feature.search.FetchMovieDetailsUseCase
 import com.alperb.yoyocinema.model.YoyoMovieDetail
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import com.alperb.yoyocinema.network.model.Genre
+import com.alperb.yoyocinema.R
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -57,6 +59,8 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     val castItemSpacing = CAST_ITEM_SPACING
+
+    override val toolbarModel = ToolbarModel(titleRes = R.string.title_movie_detail)
 
     override val loadingObservableList = listOf(_movieDetailStateOwner)
 

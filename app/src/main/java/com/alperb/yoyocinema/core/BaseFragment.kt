@@ -1,7 +1,6 @@
 package com.alperb.yoyocinema.core
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.alperb.yoyocinema.core.common.UIState
 import com.alperb.yoyocinema.core.common.loading.DefaultLoadingObserver
-import com.alperb.yoyocinema.core.common.loading.LoadingFragment
-import com.alperb.yoyocinema.core.common.loading.LoadingOwner
 import com.alperb.yoyocinema.di.ViewModelFactory
-import com.alperb.yoyocinema.feature.home.HomeFragment
-import com.alperb.yoyocinema.feature.home.HomeViewModel
-import javax.inject.Inject
 
 abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment() {
 
