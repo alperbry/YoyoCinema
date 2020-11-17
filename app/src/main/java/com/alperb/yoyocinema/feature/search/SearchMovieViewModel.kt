@@ -20,23 +20,24 @@ class SearchMovieViewModel @Inject constructor(
     val sortMovieListUseCase: SortMovieListUseCase
 ) : BaseViewModel() {
 
-    val queriedMovie: MutableLiveData<String?> = MutableLiveData()
+    val queriedMovie: SingleLiveEvent<String> = SingleLiveEvent()
 
     val checkedSortingRadioButton: MutableLiveData<Int> = MutableLiveData(R.id.radioButtonSortPoint)
 
-    private val selectedSortingOption: LiveData<MovieSortModel> = Transformations.map(checkedSortingRadioButton) { id ->
-        return@map when (id) {
-            R.id.radioButtonSortPoint -> MovieSortModel(MovieSorter.SortingOption.POINT)
-            R.id.radioButtonSortName -> MovieSortModel(MovieSorter.SortingOption.NAME)
-            else -> throw IllegalArgumentException("Invalid radio button.")
+    private val selectedSortingOption: LiveData<MovieSortModel> =
+        Transformations.map(checkedSortingRadioButton) { id ->
+            return@map when (id) {
+                R.id.radioButtonSortPoint -> MovieSortModel(MovieSorter.SortingOption.POINT)
+                R.id.radioButtonSortName -> MovieSortModel(MovieSorter.SortingOption.NAME)
+                else -> throw IllegalArgumentException("Invalid radio button.")
+            }
         }
-    }
 
     private val movieListState: LiveData<UIState<List<YoyoMovieOverview>>> =
         Transformations.switchMap(queriedMovie) { query ->
             liveData {
                 emit(UIState.Loading)
-                emit(searchMovieUseCase.searchMovie(query.orEmpty(), selectedSortingOption.value))
+                emit(searchMovieUseCase.searchMovie(query, selectedSortingOption.value))
             }
         }
 

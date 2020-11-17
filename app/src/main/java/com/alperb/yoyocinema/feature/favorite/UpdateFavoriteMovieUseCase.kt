@@ -2,8 +2,6 @@ package com.alperb.yoyocinema.feature.favorite
 
 import com.alperb.yoyocinema.core.BaseUseCase
 import com.alperb.yoyocinema.core.coroutines.DispatcherProvider
-import com.alperb.yoyocinema.db.FavoriteMoviesRepository
-import com.alperb.yoyocinema.model.MovieOverviewEntity
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import javax.inject.Inject
 

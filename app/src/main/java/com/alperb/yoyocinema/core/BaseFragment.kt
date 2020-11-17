@@ -55,7 +55,7 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadingObserver.startObserving(this, viewModel, requireActivity())
+        loadingObserver.startObserving(viewLifecycleOwner, viewModel, childFragmentManager)
         attachViewModelObservers()
     }
 

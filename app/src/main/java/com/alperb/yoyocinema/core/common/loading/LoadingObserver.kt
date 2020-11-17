@@ -1,30 +1,30 @@
 package com.alperb.yoyocinema.core.common.loading
 
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import com.alperb.yoyocinema.core.common.UIState
 
 interface LoadingObserver {
 
-    fun startObserving(lifecycleOwner: LifecycleOwner, loadingOwner: LoadingOwner, activity: FragmentActivity)
+    fun startObserving(lifecycleOwner: LifecycleOwner, loadingOwner: LoadingOwner, fragmentManager: FragmentManager)
 }
 
 class DefaultLoadingObserver : LoadingObserver {
 
-    override fun startObserving(lifecycleOwner: LifecycleOwner, loadingOwner: LoadingOwner, activity: FragmentActivity) {
+    override fun startObserving(lifecycleOwner: LifecycleOwner, loadingOwner: LoadingOwner, fragmentManager: FragmentManager) {
         loadingOwner.loadingObservableList.forEach {
             it.observe(lifecycleOwner) {
                 if (it is UIState.Loading) {
-                    getOrCreateLoading(activity).show(activity.supportFragmentManager, LoadingFragment.TAG)
+                    getOrCreateLoading(fragmentManager).show(fragmentManager, LoadingFragment.TAG)
                 } else {
-                    getOrCreateLoading(activity).dismiss()
+                    getOrCreateLoading(fragmentManager).dismiss()
                 }
             }
         }
     }
 
-    private fun getOrCreateLoading(activity: FragmentActivity): LoadingFragment {
-        return activity.supportFragmentManager.findFragmentByTag(LoadingFragment.TAG) as? LoadingFragment
+    private fun getOrCreateLoading(fragmentManager: FragmentManager): LoadingFragment {
+        return fragmentManager.findFragmentByTag(LoadingFragment.TAG) as? LoadingFragment
             ?: LoadingFragment()
     }
 }
