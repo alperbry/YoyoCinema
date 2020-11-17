@@ -7,88 +7,98 @@
             name="viewModel"
             type="com.alperb.yoyocinema.feature.detail.MovieDetailViewModel" />
     </data>
-
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#123456">
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
+            layout="@layout/layout_toolbar"
+            app:model="@{viewModel.toolbarModel}"
+            />
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:background="#123456">
 
-            <include
-                android:id="@+id/fragmentMovieDetailCard"
-                layout="@layout/layout_movie_card"
-                app:model="@{viewModel.movieDetail}"
-                app:viewModel="@{viewModel}"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/fragmentMovieDetailGenre"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="@{viewModel.genreText}"
-                android:textColor="#ffffff"
-                tools:text="Drama, Drama, Drama, Drama, Drama"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailCard"
-                app:layout_constraintStart_toStartOf="parent" />
+                <include
+                    android:id="@+id/fragmentMovieDetailCard"
+                    layout="@layout/layout_movie_card"
+                    app:model="@{viewModel.movieDetail}"
+                    app:viewModel="@{viewModel}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-            <TextView
-                style="@style/YoyoAppTextAppearance.GreyLight.Title"
-                android:id="@+id/fragmentMovieDetailSynopsisTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Synopsis"
-                tools:text="Synopsis"
-                android:layout_marginTop="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailGenre"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/fragmentMovieDetailGenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="@{viewModel.genreText}"
+                    android:textColor="#ffffff"
+                    tools:text="Drama, Drama, Drama, Drama, Drama"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailCard"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                style="@style/YoyoAppTextAppearance.GreyLight.Message"
-                android:id="@+id/fragmentMovieDetailOverview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.movieDetail.overview}"
-                android:textColor="#ffffff"
-                tools:text="Synopsis"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailSynopsisTitle"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    style="@style/YoyoAppTextAppearance.GreyLight.Title"
+                    android:id="@+id/fragmentMovieDetailSynopsisTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Synopsis"
+                    tools:text="Synopsis"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailGenre"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                style="@style/YoyoAppTextAppearance.GreyLight.Title"
-                android:id="@+id/fragmentMovieDetailCastTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Cast"
-                tools:text="Cast"
-                android:layout_marginTop="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailOverview" />
+                <TextView
+                    style="@style/YoyoAppTextAppearance.GreyLight.Message"
+                    android:id="@+id/fragmentMovieDetailOverview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.movieDetail.overview}"
+                    android:textColor="#ffffff"
+                    tools:text="Synopsis"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailSynopsisTitle"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                app:itemList="@{viewModel.castItemList}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:spacing="@{viewModel.castItemSpacing}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailCastTitle" />
+                <TextView
+                    style="@style/YoyoAppTextAppearance.GreyLight.Title"
+                    android:id="@+id/fragmentMovieDetailCastTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cast"
+                    tools:text="Cast"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailOverview" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:itemList="@{viewModel.castItemList}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:spacing="@{viewModel.castItemSpacing}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentMovieDetailCastTitle" />
 
-    </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </layout>
