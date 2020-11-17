@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.alperb.yoyocinema.model.YoyoMovieDetail" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/rounded_rect_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/movieCardPoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintTop_toTopOf="@+id/movieCardScoreContainer"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                app:imageUrl="@{model.posterUrl}"
+                tools:background="@drawable/ic_launcher_background" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/movieCardScoreContainer"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_rect_base"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@id/card1"
+            app:layout_constraintTop_toTopOf="@+id/card1"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:id="@+id/movieCardScoringTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCORE"
+                android:textSize="12sp"
+                tools:text="SCORE"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                style="@style/YoyoAppTextAppearance.MovieCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.voteAverage.toString()}"
+                tools:text="9.0"
+                app:layout_constraintTop_toBottomOf="@id/movieCardScoringTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            style="@style/YoyoAppTextAppearance.MovieCardTitle"
+            android:id="@+id/movieCardTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{model.title}"
+            app:layout_constraintStart_toEndOf="@id/movieCardPoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieCardScoreContainer"
+            tools:text="Decalogue VI"/>
+
+        <TextView
+            style="@style/YoyoAppTextAppearance.MovieCardSubtitle"
+            android:id="@+id/movieCardSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="6dp"
+            android:text="@{model.originalTitle}"
+            app:layout_constraintStart_toEndOf="@id/movieCardPoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieCardTitle"
+            tools:text="Dekalog VI"/>
+
+        <TextView
+            style="@style/YoyoAppTextAppearance.MovieCardSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="6dp"
+            android:text="@{model.releaseDate}"
+            app:layout_constraintStart_toEndOf="@id/movieCardPoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieCardSubtitle"
+            tools:text="1990"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add To Favorites"
+            app:layout_constraintBottom_toBottomOf="@id/card1"
+            app:layout_constraintStart_toStartOf="@id/card1"
+            app:layout_constraintEnd_toEndOf="@id/card1" />
+        
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

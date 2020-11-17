@@ -1,6 +1,7 @@
 package com.alperb.yoyocinema.model
 
 import android.os.Parcelable
+import com.alperb.yoyocinema.BuildConfig
 import com.alperb.yoyocinema.core.common.extensions.orFalse
 import com.alperb.yoyocinema.network.model.*
 import kotlinx.android.parcel.Parcelize
@@ -43,7 +44,7 @@ class YoyoMovieDetail(
     constructor(movieDetail: MovieDetail, castList: List<Cast?>?) : this(
         id = movieDetail.id,
         title = movieDetail.title,
-        posterUrl = movieDetail.poster_path,
+        posterUrl = "${BuildConfig.BASE_IMAGE_URL}${movieDetail.poster_path}",
         adult = movieDetail.adult.orFalse(),
         voteAverage = movieDetail.vote_average,
         releaseDate = movieDetail.release_date,
