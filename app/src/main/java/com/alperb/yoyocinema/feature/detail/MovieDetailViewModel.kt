@@ -1,5 +1,6 @@
 package com.alperb.yoyocinema.feature.detail
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.ToolbarModel
@@ -13,6 +14,7 @@ import com.alperb.yoyocinema.model.YoyoMovieDetail
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import com.alperb.yoyocinema.network.model.Genre
 import com.alperb.yoyocinema.R
+import com.alperb.yoyocinema.core.common.SingleLiveEvent
 import com.alperb.yoyocinema.core.common.extensions.orFalse
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -64,6 +66,8 @@ class MovieDetailViewModel @Inject constructor(
 
     override val loadingObservableList = listOf(_movieDetailStateOwner)
 
+    val onBottomEvent: SingleLiveEvent<Any> = SingleLiveEvent()
+
     fun initialize(movieId: Int?) {
         movieId?.let {
             _movieId.value = it
@@ -73,6 +77,12 @@ class MovieDetailViewModel @Inject constructor(
 
     fun onScreenClosed() {
         updateFavoriteStatusPersistently()
+    }
+
+    fun onScrolledToBottom() {
+        if (isMovieCheckedAsFavorite.value.orFalse().not()) {
+            onBottomEvent.call()
+        }
     }
 
     private fun setInitialFavoriteStatus(movieId: Int) {

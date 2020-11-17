@@ -28,7 +28,7 @@ class SearchMovieViewModel @Inject constructor(
         Transformations.map(checkedSortingRadioButton) { id ->
             return@map when (id) {
                 R.id.radioButtonSortPoint -> MovieSortModel(MovieSorter.SortingOption.POINT)
-                R.id.radioButtonSortName -> MovieSortModel(MovieSorter.SortingOption.NAME)
+                R.id.radioButtonSortName -> MovieSortModel(MovieSorter.SortingOption.NAME, isReverse = false)
                 else -> throw IllegalArgumentException("Invalid radio button.")
             }
         }

@@ -7,11 +7,14 @@ import com.alperb.yoyocinema.BR
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseFragment
 import com.alperb.yoyocinema.core.YoyoCinemaApp
+import com.alperb.yoyocinema.core.common.DebouncedSingleJobHandler
 import com.alperb.yoyocinema.databinding.FragmentMovieDetailBinding
 import com.alperb.yoyocinema.di.ViewModelFactory
 import javax.inject.Inject
 
 private const val KEY_MOVIE_ID = "keyMovieId"
+
+private const val FAV_BUTTON_APPEAR_DURATION = 3000L
 
 class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDetailBinding>() {
 
@@ -41,6 +44,21 @@ class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDeta
     override fun onStop() {
         super.onStop()
         viewModel.onScreenClosed()
+    }
+
+    override fun attachViewModelObservers() {
+        super.attachViewModelObservers()
+        viewModel.onBottomEvent.observe(viewLifecycleOwner) {
+            animateFavoriteButton(collapse = false)
+            DebouncedSingleJobHandler.post({
+                animateFavoriteButton(collapse = true)
+            }, FAV_BUTTON_APPEAR_DURATION)
+        }
+    }
+
+    private fun animateFavoriteButton(collapse: Boolean) {
+        val y = if (collapse) 0f else -binding.fragmentMovieDetailBottomFavoriteButton.height.toFloat()
+        binding.fragmentMovieDetailBottomFavoriteButton.animate().translationY(y)
     }
 
     companion object {
