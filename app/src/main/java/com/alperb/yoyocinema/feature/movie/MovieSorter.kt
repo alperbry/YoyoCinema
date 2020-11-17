@@ -12,10 +12,10 @@ class MovieSorter @Inject constructor() {
         sortingOption: SortingOption,
         reverse: Boolean = false
     ): List<YoyoMovieOverview> {
-        return if (sortingOption == SortingOption.NAME) {
-            sortByName(movieDetailList, reverse)
-        } else {
-            sortByPoint(movieDetailList, reverse)
+        return when (sortingOption) {
+            SortingOption.NAME -> sortByName(movieDetailList, reverse)
+            SortingOption.POINT -> sortByPoint(movieDetailList, reverse)
+            else -> movieDetailList
         }
     }
 
@@ -45,6 +45,7 @@ class MovieSorter @Inject constructor() {
 
     enum class SortingOption {
         NAME,
-        POINT
+        POINT,
+        NONE
     }
 }
