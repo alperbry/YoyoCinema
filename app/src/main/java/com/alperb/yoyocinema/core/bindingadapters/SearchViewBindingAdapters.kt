@@ -17,7 +17,9 @@ fun SearchView.setQueryText(queryText: String?) {
 
 @InverseBindingAdapter(attribute = "queryText", event = "queryTextChanged")
 fun SearchView.getQueriedText(): String? {
-    return query?.toString()
+    return query?.let {
+        if (it.isEmpty().not()) it.toString() else null
+    }
 }
 
 @BindingAdapter(value = ["queryTextChanged"], requireAll = false)

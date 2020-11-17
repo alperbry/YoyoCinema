@@ -6,9 +6,12 @@ import com.alperb.yoyocinema.core.coroutines.DispatcherProvider
 import com.alperb.yoyocinema.feature.movie.MovieSortModel
 import com.alperb.yoyocinema.feature.movie.MovieSorter
 import com.alperb.yoyocinema.model.YoyoMovieOverview
+import com.alperb.yoyocinema.network.model.MovieOverview
 import com.alperb.yoyocinema.network.repository.MoviesRepository
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+
+private const val MIN_QUERY_LENGTH = 2
 
 class SearchMovieUseCase @Inject constructor(
     val repository: MoviesRepository,
@@ -16,21 +19,31 @@ class SearchMovieUseCase @Inject constructor(
     dispatcherProvider: DispatcherProvider
 ) : BaseUseCase(dispatcherProvider) {
 
-    //fixme divide into small functions
-    suspend fun searchMovie(query: String, movieSortModel: MovieSortModel?): UIState<List<YoyoMovieOverview>> {
+    suspend fun searchMovie(query: String?, movieSortModel: MovieSortModel?): UIState<List<YoyoMovieOverview>> {
         return withContext(dispatcherProvider.default) {
-            val movieList = repository.searchMovie(query)
+            if (validateQuery(query).not()) {
+                return@withContext UIState.Success(emptyList())
+            }
+            val movieList = repository.searchMovie(query!!)
             handleResponse(movieList) { movieOverviewList ->
-                val list = movieOverviewList?.mapNotNull { movieOverview ->
-                    movieOverview?.let {
-                        YoyoMovieOverview.getInstance(it)
-                    }
-                }.orEmpty()
+                val movieModelList = mapToUIModel(movieOverviewList)
                 movieSortModel?.let {
-                    movieSorter.sort(list, movieSortModel.sortingOption, movieSortModel.isReverse)
-                } ?: list
+                    movieSorter.sort(movieModelList, movieSortModel.sortingOption, movieSortModel.isReverse)
+                } ?: movieModelList
             }
         }
+    }
+
+    private fun validateQuery(query: String?): Boolean {
+        return (query != null) && (query.length >= MIN_QUERY_LENGTH)
+    }
+
+    private fun mapToUIModel(movieOverviewList: List<MovieOverview?>?): List<YoyoMovieOverview> {
+        return movieOverviewList?.mapNotNull { movieOverview ->
+            movieOverview?.let {
+                YoyoMovieOverview.getInstance(it)
+            }
+        }.orEmpty()
     }
 
 }

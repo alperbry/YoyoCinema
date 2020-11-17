@@ -20,7 +20,7 @@ class SearchMovieViewModel @Inject constructor(
     val sortMovieListUseCase: SortMovieListUseCase
 ) : BaseViewModel() {
 
-    val queriedMovie: SingleLiveEvent<String> = SingleLiveEvent()
+    val queriedMovie: MutableLiveData<String> = MutableLiveData()
 
     val checkedSortingRadioButton: MutableLiveData<Int> = MutableLiveData(R.id.radioButtonSortPoint)
 
