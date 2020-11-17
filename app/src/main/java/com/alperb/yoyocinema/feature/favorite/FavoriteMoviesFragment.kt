@@ -8,6 +8,7 @@ import com.alperb.yoyocinema.core.BaseFragment
 import com.alperb.yoyocinema.core.YoyoCinemaApp
 import com.alperb.yoyocinema.databinding.FragmentFavoriteBinding
 import com.alperb.yoyocinema.di.ViewModelFactory
+import com.alperb.yoyocinema.feature.detail.MovieDetailFragment
 import javax.inject.Inject
 
 class FavoriteMoviesFragment : BaseFragment<FavoriteMoviesViewModel, FragmentFavoriteBinding>() {
@@ -33,6 +34,21 @@ class FavoriteMoviesFragment : BaseFragment<FavoriteMoviesViewModel, FragmentFav
     override fun onResume() {
         super.onResume()
         viewModel.onAppearOnScreen()
+    }
+
+    override fun attachViewModelObservers() {
+        //fixme add generic navigation solution
+        viewModel.navigate.observe(viewLifecycleOwner) { id ->
+            val manager = requireActivity().supportFragmentManager
+            val transaction = manager.beginTransaction()
+            transaction.replace(
+                R.id.activityHomeContainer,
+                MovieDetailFragment.newInstance(id),
+                null
+            )
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 
     companion object {

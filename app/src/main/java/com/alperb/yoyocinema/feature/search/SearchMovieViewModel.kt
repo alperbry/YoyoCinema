@@ -84,8 +84,6 @@ class SearchMovieViewModel @Inject constructor(
 
     val navigate = SingleLiveEvent<Int>()
 
-    override val loadingObservableList: List<LiveData<*>> = listOf(movieListState)
-
     init {
         movieListMediator.addSource(_movieList) {
             movieListMediator.value = it

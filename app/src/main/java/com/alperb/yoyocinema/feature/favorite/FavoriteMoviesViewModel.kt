@@ -49,10 +49,12 @@ class FavoriteMoviesViewModel @Inject constructor(
             movieItemList?.first()?.posterPath
         }
 
+    val navigate: SingleLiveEvent<Int> = SingleLiveEvent()
+
     override val loadingObservableList = listOf(_movieListState)
 
     fun onMovieItemClick(id: Int) {
-        //navigate.value = id
+        navigate.value = id
     }
 
     /**
