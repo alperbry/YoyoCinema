@@ -38,7 +38,6 @@ class SearchMovieFragment : BaseFragment<SearchMovieViewModel, FragmentSearchBin
     override fun attachViewModelObservers() {
         viewModel.movieDetailState.observe(this) {
             if (it is UIState.Success && it.data != null) {
-                Log.d("deneme", it.data?.originalTitle.orEmpty())
                 val manager = requireActivity().supportFragmentManager//requireFragmentManager()//supportFragmentManager
                 val transaction = manager.beginTransaction()
                 transaction.replace(
