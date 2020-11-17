@@ -44,6 +44,11 @@ class FavoriteMoviesViewModel @Inject constructor(
             }
         }
 
+    val backgroundImageUrl =
+        Transformations.map(_moviesList) { movieItemList ->
+            movieItemList?.first()?.posterPath
+        }
+
     override val loadingObservableList = listOf(_movieListState)
 
     fun onMovieItemClick(id: Int) {
