@@ -30,7 +30,7 @@ fun SearchView.onQueryTextChanged(attrChanged: InverseBindingListener) {
         override fun onQueryTextChange(newText: String?): Boolean {
             DebouncedSingleJobHandler.post({
                 attrChanged.onChange()
-            }, 1000)
+            }, 600)
             return true
         }
     })

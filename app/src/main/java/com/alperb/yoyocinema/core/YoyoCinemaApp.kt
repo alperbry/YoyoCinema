@@ -5,5 +5,7 @@ import com.alperb.yoyocinema.di.DaggerAppComponent
 
 class YoyoCinemaApp : Application() {
 
-    val appComponent = DaggerAppComponent.create()
+    val appComponent by lazy {
+        DaggerAppComponent.factory().create(this)
+    }
 }

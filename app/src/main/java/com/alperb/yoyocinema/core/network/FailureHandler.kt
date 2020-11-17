@@ -11,6 +11,7 @@ interface FailureHandler {
 class DefaultFailureHandler : FailureHandler {
     override suspend fun handleResponse(throwable: Throwable): Response.Failure {
         return when (throwable) {
+            //todo add for room database
             is HttpException -> Response.Failure(throwable.code(), throwable.message())
             else -> Response.Failure()
         }

@@ -25,7 +25,7 @@ data class MovieOverview(
 
 @JsonClass(generateAdapter = true)
 data class MovieDetail(
-    @Json(name = "id") val id: Int?,
+    @Json(name = "id") val id: Int,
     @Json(name = "title") val title: String?,
     @Json(name = "poster_path") val poster_path: String?,
     @Json(name = "adult") val adult: Boolean?,

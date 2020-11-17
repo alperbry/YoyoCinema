@@ -49,7 +49,7 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getResourceLayoutId(), container, false)
         bindVariables()
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 

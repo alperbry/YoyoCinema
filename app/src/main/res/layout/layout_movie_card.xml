@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
+            name="viewModel"
+            type="com.alperb.yoyocinema.feature.detail.MovieDetailViewModel" />
+        <variable
             name="model"
             type="com.alperb.yoyocinema.model.YoyoMovieDetail" />
     </data>
@@ -108,15 +111,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movieCardSubtitle"
             tools:text="1990"/>
-
-        <Button
+        
+        <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add To Favorites"
+            android:textOff="Add To Favorites"
+            android:textOn="Remove From Favorites"
+            android:checked="@={viewModel.initialFavoriteStatus}"
+            android:onCheckedChanged="@{viewModel::onFavoriteToggleChecked}"
             app:layout_constraintBottom_toBottomOf="@id/card1"
             app:layout_constraintStart_toStartOf="@id/card1"
             app:layout_constraintEnd_toEndOf="@id/card1" />
-        
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

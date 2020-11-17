@@ -22,6 +22,7 @@
                 android:id="@+id/fragmentMovieDetailCard"
                 layout="@layout/layout_movie_card"
                 app:model="@{viewModel.movieDetail}"
+                app:viewModel="@{viewModel}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

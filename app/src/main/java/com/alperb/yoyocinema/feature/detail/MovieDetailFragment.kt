@@ -2,6 +2,7 @@ package com.alperb.yoyocinema.feature.detail
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.alperb.yoyocinema.BR
 import com.alperb.yoyocinema.R
@@ -37,6 +38,11 @@ class MovieDetailFragment : BaseFragment<MovieDetailViewModel, FragmentMovieDeta
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.initialize(arguments?.getParcelable(KEY_MOVIE_DETAILS))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.onScreenClosed()
     }
 
     companion object {

@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class YoyoMovieDetail(
-    val id: Int?,
+    val id: Int,
     val title: String?,
     val posterUrl: String?,
     val adult: Boolean,

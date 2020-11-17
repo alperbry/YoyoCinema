@@ -6,7 +6,7 @@ import com.alperb.yoyocinema.di.ActivityScope
 import javax.inject.Inject
 
 @ActivityScope
-class FavoriteMoviesViewModel @Inject constructor(getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase) : BaseViewModel() {
+class FavoriteMoviesViewModel @Inject constructor(checkFavoriteMovieUseCase: CheckFavoriteMovieUseCase) : BaseViewModel() {
 
     val text = MutableLiveData<String>("favorite movies")
 }
