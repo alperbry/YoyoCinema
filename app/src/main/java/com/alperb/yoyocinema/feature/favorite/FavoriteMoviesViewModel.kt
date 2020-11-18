@@ -46,7 +46,7 @@ class FavoriteMoviesViewModel @Inject constructor(
 
     val backgroundImageUrl =
         Transformations.map(_moviesList) { movieItemList ->
-            movieItemList?.first()?.posterPath
+            movieItemList?.firstOrNull()?.posterPath
         }
 
     val navigate: SingleLiveEvent<Int> = SingleLiveEvent()
