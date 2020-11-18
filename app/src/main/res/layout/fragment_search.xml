@@ -49,11 +49,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="bottom|start"
+                        android:layout_gravity="bottom|start"
                         android:text="@string/title_movie_search"
                         android:textColor="@android:color/white"
                         android:textSize="30sp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="20dp"
                         />
 
                 </FrameLayout>
@@ -66,6 +67,7 @@
                     android:id="@+id/fragmentSearchViewSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:queryHint="@string/hint_movie_search"
                     app:queryText="@={viewModel.queriedMovie}"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

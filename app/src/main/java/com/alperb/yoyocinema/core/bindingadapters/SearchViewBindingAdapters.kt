@@ -6,6 +6,8 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.alperb.yoyocinema.core.common.DebouncedSingleJobHandler
 
+private const val SEARCH_DEBOUNCE_MS = 400L
+
 @BindingAdapter("queryText")
 fun SearchView.setQueryText(queryText: String?) {
     queryText?.let {
@@ -32,7 +34,7 @@ fun SearchView.onQueryTextChanged(attrChanged: InverseBindingListener) {
         override fun onQueryTextChange(newText: String?): Boolean {
             DebouncedSingleJobHandler.post({
                 attrChanged.onChange()
-            }, 300)
+            }, SEARCH_DEBOUNCE_MS)
             return true
         }
     })
