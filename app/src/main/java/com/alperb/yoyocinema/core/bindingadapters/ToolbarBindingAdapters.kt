@@ -12,5 +12,4 @@ fun Toolbar.setModel(model: ToolbarModel) {
     activity.supportActionBar?.setDisplayHomeAsUpEnabled(model.navIcon != null)
     model.titleRes?.let { activity.supportActionBar?.setTitle(it) }
     setNavigationOnClickListener { activity.onBackPressed() }
-
 }

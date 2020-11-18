@@ -3,4 +3,6 @@
     <string name="menu_search">Search</string>
     <string name="menu_favorites">Favorites</string>
     <string name="title_movie_detail">Details</string>
+
+    <string name="error_button_text">Try Again</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.alperb.yoyocinema.feature.detail
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.ToolbarModel
@@ -15,6 +14,7 @@ import com.alperb.yoyocinema.model.YoyoMovieOverview
 import com.alperb.yoyocinema.network.model.Genre
 import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.common.SingleLiveEvent
+import com.alperb.yoyocinema.core.common.error.ErrorModel
 import com.alperb.yoyocinema.core.common.extensions.orFalse
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,7 +30,7 @@ class MovieDetailViewModel @Inject constructor(
 
     private val _movieId: MutableLiveData<Int> = MutableLiveData()
 
-    private val _movieDetailStateOwner: LiveData<UIState<YoyoMovieDetail?>> =
+    val movieDetailStateOwner: LiveData<UIState<YoyoMovieDetail?>> =
         Transformations.switchMap(_movieId) { id ->
             liveData {
                 emit(UIState.Loading)
@@ -39,7 +39,7 @@ class MovieDetailViewModel @Inject constructor(
         }
 
     val movieDetail =
-        Transformations.map(_movieDetailStateOwner) { movieDetailState ->
+        Transformations.map(movieDetailStateOwner) { movieDetailState ->
             return@map if (movieDetailState is UIState.Success) {
                 movieDetailState.data
             } else null
@@ -49,6 +49,15 @@ class MovieDetailViewModel @Inject constructor(
         Transformations.map(movieDetail) { movieDetail ->
             movieDetail?.castList?.map {
                 CastItemPresentationWrapper(CastItemPresentation(it))
+            }
+        }
+
+    val errorModel =
+        Transformations.map(movieDetailStateOwner) { state ->
+            return@map if (state is UIState.Failure) {
+                ErrorModel(state, ::onTryAgainClicked)
+            } else {
+                null
             }
         }
 
@@ -64,7 +73,7 @@ class MovieDetailViewModel @Inject constructor(
 
     override val toolbarModel = ToolbarModel(titleRes = R.string.title_movie_detail)
 
-    override val loadingObservableList = listOf(_movieDetailStateOwner)
+    override val loadingObservableList = listOf(movieDetailStateOwner)
 
     val onBottomEvent: SingleLiveEvent<Any> = SingleLiveEvent()
 
@@ -83,6 +92,10 @@ class MovieDetailViewModel @Inject constructor(
         if (isMovieCheckedAsFavorite.value.orFalse().not()) {
             onBottomEvent.call()
         }
+    }
+
+    fun onTryAgainClicked() {
+        _movieId.postValue(_movieId.value)
     }
 
     private fun setInitialFavoriteStatus(movieId: Int) {

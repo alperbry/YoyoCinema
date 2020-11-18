@@ -5,6 +5,7 @@ import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.SingleLiveEvent
 import com.alperb.yoyocinema.core.common.UIState
+import com.alperb.yoyocinema.core.common.error.ErrorModel
 import com.alperb.yoyocinema.di.ActivityScope
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentation
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentationWrapper
@@ -33,7 +34,7 @@ class SearchMovieViewModel @Inject constructor(
             }
         }
 
-    private val movieListState: LiveData<UIState<List<YoyoMovieOverview>>> =
+    val movieListState: LiveData<UIState<List<YoyoMovieOverview>>> =
         Transformations.switchMap(queriedMovie) { query ->
             liveData {
                 emit(UIState.Loading)
