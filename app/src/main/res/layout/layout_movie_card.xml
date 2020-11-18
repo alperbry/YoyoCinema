@@ -113,11 +113,13 @@
             tools:text="1990"/>
         
         <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
             android:textOff="Add To Favorites"
             android:textOn="Remove From Favorites"
+            android:background="@drawable/rounded_rect_stroked"
             android:checked="@={viewModel.isMovieCheckedAsFavorite}"
+            android:layout_marginBottom="6dp"
             app:layout_constraintBottom_toBottomOf="@id/card1"
             app:layout_constraintStart_toStartOf="@id/card1"
             app:layout_constraintEnd_toEndOf="@id/card1" />
