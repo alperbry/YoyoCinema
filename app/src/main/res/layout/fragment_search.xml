@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="centerCrop"
-                    android:src="@color/colorPrimary"
+                    android:background=""
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.9"
                     />
@@ -40,31 +40,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_gravity="bottom|center_horizontal"
-                    android:background="@color/colorPrimary"
                     android:orientation="vertical"
                     app:layout_collapseMode="parallax"
                     app:layout_collapseParallaxMultiplier="0.3"
                     >
 
-                    <LinearLayout
-                        android:id="@+id/searchLinearTitle"
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        >
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="bottom|start"
+                        android:text="@string/title_movie_search"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp"
+                        />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="bottom|center"
-                            android:text="Search Movie"
-                            android:textColor="@android:color/white"
-                            android:textSize="30sp"
-                            />
-
-                    </LinearLayout>
                 </FrameLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
             <LinearLayout
@@ -88,11 +79,11 @@
                     <RadioButton android:id="@+id/radioButtonSortPoint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Point"/>
+                        android:text="@string/sorting_button_point"/>
                     <RadioButton android:id="@+id/radioButtonSortName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Name (A-Z)"/>
+                        android:text="@string/sorting_button_name"/>
                 </RadioGroup>
 
             </LinearLayout>

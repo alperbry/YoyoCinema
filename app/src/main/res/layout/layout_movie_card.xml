@@ -115,8 +115,8 @@
         <ToggleButton
             android:layout_width="200dp"
             android:layout_height="45dp"
-            android:textOff="Add To Favorites"
-            android:textOn="Remove From Favorites"
+            android:textOff="@string/button_favorite_off"
+            android:textOn="@string/button_favorite_on"
             android:background="@drawable/rounded_rect_stroked"
             android:checked="@={viewModel.isMovieCheckedAsFavorite}"
             android:layout_marginBottom="6dp"

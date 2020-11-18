@@ -56,7 +56,7 @@
                         android:id="@+id/fragmentMovieDetailSynopsisTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Synopsis"
+                        android:text="@string/title_synopsis"
                         tools:text="Synopsis"
                         android:layout_marginTop="24dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
                         android:id="@+id/fragmentMovieDetailCastTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Cast"
+                        android:text="@string/title_cast"
                         tools:text="Cast"
                         android:layout_marginTop="24dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -117,8 +117,8 @@
             android:layout_height="45dp"
             android:background="@drawable/rounded_rect_stroked"
             android:layout_gravity="center"
-            android:textOff="Add To Favorites"
-            android:textOn="Remove From Favorites"
+            android:textOff="@string/button_favorite_off"
+            android:textOn="@string/button_favorite_on"
             android:checked="@={viewModel.isMovieCheckedAsFavorite}"/>
 
     </LinearLayout>
