@@ -2,6 +2,7 @@
 <resources>
     <string name="button_favorite_off">Add To Favorites</string>
     <string name="button_favorite_on">Remove From Favorites</string>
+    <string name="button_favorite_on_short">Remove</string>
     <string name="title_cast">Cast</string>
     <string name="title_synopsis">Synopsis</string>
 </resources>
