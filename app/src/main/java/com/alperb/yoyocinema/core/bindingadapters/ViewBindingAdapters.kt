@@ -18,3 +18,12 @@ fun ViewSwitcher.setUIState(uiState: UIState<*>?) {
         0
     }
 }
+
+@BindingAdapter("displayedChild")
+fun ViewSwitcher.displayedChild(index: Int) {
+    displayedChild = if (index == 1) {
+        1
+    } else {
+        0
+    }
+}

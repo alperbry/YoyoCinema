@@ -12,6 +12,9 @@ import com.alperb.yoyocinema.feature.movie.MovieItemPresentationWrapper
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import javax.inject.Inject
 
+private const val INDEX_NO_FILM = 1
+private const val INDEX_HAS_FILM = 0
+
 @ActivityScope
 class FavoriteMoviesViewModel @Inject constructor(
     getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
@@ -47,6 +50,15 @@ class FavoriteMoviesViewModel @Inject constructor(
     val backgroundImageUrl =
         Transformations.map(_moviesList) { movieItemList ->
             movieItemList?.firstOrNull()?.posterPath
+        }
+
+    val displayedChild =
+        Transformations.map(_moviesList) { movieItemList ->
+            return@map if (movieItemList.isNullOrEmpty()) {
+                INDEX_NO_FILM
+            } else {
+                INDEX_HAS_FILM
+            }
         }
 
     val navigate: SingleLiveEvent<Int> = SingleLiveEvent()

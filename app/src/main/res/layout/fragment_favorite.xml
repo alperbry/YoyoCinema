@@ -44,15 +44,24 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ViewSwitcher
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="14dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            app:itemList="@{viewModel.movieGridPresentationList}"
-            app:spacing="@{12}" />
+            android:layout_height="match_parent"
+            app:displayedChild="@{viewModel.displayedChild}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="14dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                app:itemList="@{viewModel.movieGridPresentationList}"
+                app:spacing="@{12}" />
+
+            <include layout="@layout/layout_empty" />
+
+        </ViewSwitcher>
 
     </LinearLayout>
 

@@ -24,6 +24,10 @@ fun SearchView.getQueriedText(): String? {
     }
 }
 
+
+/**
+ * Triggers query change event with debounce. Helps to decrease request count on this project.
+ */
 @BindingAdapter(value = ["queryTextChanged"], requireAll = false)
 fun SearchView.onQueryTextChanged(attrChanged: InverseBindingListener) {
     setOnQueryTextListener(object : SearchView.OnQueryTextListener {
