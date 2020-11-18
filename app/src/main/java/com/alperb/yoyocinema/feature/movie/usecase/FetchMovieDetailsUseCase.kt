@@ -1,4 +1,4 @@
-package com.alperb.yoyocinema.feature.search
+package com.alperb.yoyocinema.feature.movie.usecase
 
 import com.alperb.yoyocinema.core.BaseUseCase
 import com.alperb.yoyocinema.core.common.UIState

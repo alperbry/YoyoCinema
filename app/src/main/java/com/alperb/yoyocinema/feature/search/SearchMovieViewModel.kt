@@ -5,12 +5,13 @@ import com.alperb.yoyocinema.R
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.SingleLiveEvent
 import com.alperb.yoyocinema.core.common.UIState
-import com.alperb.yoyocinema.core.common.error.ErrorModel
 import com.alperb.yoyocinema.di.ActivityScope
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentation
 import com.alperb.yoyocinema.feature.movie.MovieItemPresentationWrapper
 import com.alperb.yoyocinema.feature.movie.MovieSortModel
 import com.alperb.yoyocinema.feature.movie.MovieSorter
+import com.alperb.yoyocinema.feature.movie.usecase.SearchMovieUseCase
+import com.alperb.yoyocinema.feature.movie.usecase.SortMovieListUseCase
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
@@ -73,6 +74,10 @@ class SearchMovieViewModel @Inject constructor(
             }
         }
 
+    /**
+     * Added in need of emitting from multiple sources, both network request and
+     * sorting strategy changes.
+     */
     private val movieListMediator : MediatorLiveData<List<YoyoMovieOverview>?> =
         MediatorLiveData<List<YoyoMovieOverview>?>()
 

@@ -11,6 +11,9 @@ abstract class BaseRepository(private val dispatcherProvider: DispatcherProvider
     abstract val successHandler: SuccessHandler
     abstract val failureHandler: FailureHandler
 
+    /**
+     * Generic function to convert network responses into application network Response models.
+     */
     suspend fun <T> apiCall(block: suspend () -> T?): Response<T?> {
         return withContext(dispatcherProvider.io) {
             try {

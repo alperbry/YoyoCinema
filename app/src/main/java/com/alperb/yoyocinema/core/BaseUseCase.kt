@@ -7,6 +7,9 @@ import kotlinx.coroutines.withContext
 
 abstract class BaseUseCase(val dispatcherProvider: DispatcherProvider) {
 
+    /**
+     * Generic function to convert network response model into UI State models.
+     */
     suspend fun <T, V> handleResponse(
         response: Response<T>,
         block: suspend (T) -> V

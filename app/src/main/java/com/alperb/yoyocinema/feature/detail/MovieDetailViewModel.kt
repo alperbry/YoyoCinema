@@ -4,11 +4,11 @@ import androidx.lifecycle.*
 import com.alperb.yoyocinema.core.BaseViewModel
 import com.alperb.yoyocinema.core.common.ToolbarModel
 import com.alperb.yoyocinema.core.common.UIState
-import com.alperb.yoyocinema.feature.favorite.CheckFavoriteMovieUseCase
-import com.alperb.yoyocinema.feature.favorite.UpdateFavoriteMovieUseCase
+import com.alperb.yoyocinema.feature.movie.usecase.CheckFavoriteMovieUseCase
+import com.alperb.yoyocinema.feature.movie.usecase.UpdateFavoriteMovieUseCase
 import com.alperb.yoyocinema.feature.movie.CastItemPresentation
 import com.alperb.yoyocinema.feature.movie.CastItemPresentationWrapper
-import com.alperb.yoyocinema.feature.search.FetchMovieDetailsUseCase
+import com.alperb.yoyocinema.feature.movie.usecase.FetchMovieDetailsUseCase
 import com.alperb.yoyocinema.model.YoyoMovieDetail
 import com.alperb.yoyocinema.model.YoyoMovieOverview
 import com.alperb.yoyocinema.network.model.Genre
@@ -108,7 +108,9 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    //fixme refactor
+    /**
+     * Updates local storage if needed.
+     */
     private fun updateFavoriteStatusPersistently() {
         if (initialFavorite != null
             && isMovieCheckedAsFavorite.value == initialFavorite) {

@@ -11,6 +11,9 @@ interface LoadingObserver {
 
 class DefaultLoadingObserver : LoadingObserver {
 
+    /**
+     * Observes registered UIState.Loading emitting observables and shows loading progress.
+     */
     override fun startObserving(lifecycleOwner: LifecycleOwner, loadingOwner: LoadingOwner, fragmentManager: FragmentManager) {
         loadingOwner.loadingObservableList.forEach {
             it.observe(lifecycleOwner) {
