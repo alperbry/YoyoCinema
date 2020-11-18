@@ -8,53 +8,41 @@
             type="com.alperb.yoyocinema.feature.favorite.FavoriteMoviesViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/Theme.AppCompat">
+            android:layout_height="300dp"
+            android:background="@color/c_242424">
+            <ImageView
+                android:id="@+id/fragmentFavoriteBackground"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:alpha="0.6"
+                app:imageUrl="@{viewModel.backgroundImageUrl}"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.9"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
+            <TextView
+                style="@style/YoyoAppTextAppearance.White.Title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+                android:text="@string/title_favorites"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="30dp"
+                app:layout_constraintTop_toTopOf="@+id/fragmentFavoriteBackground"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentFavoriteBackground"
+                app:layout_constraintStart_toStartOf="@id/fragmentFavoriteBackground" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp">
-                    <ImageView
-                        android:id="@+id/fragmentFavoriteBackground"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:scaleType="centerCrop"
-                        android:alpha="0.6"
-                        app:imageUrl="@{viewModel.backgroundImageUrl}"
-                        app:layout_collapseMode="parallax"
-                        app:layout_collapseParallaxMultiplier="0.9"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-
-                    <TextView
-                        style="@style/YoyoAppTextAppearance.White.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title_favorites"
-                        android:layout_marginTop="100dp"
-                        android:layout_marginStart="30dp"
-                        app:layout_constraintTop_toTopOf="@+id/fragmentFavoriteBackground"
-                        app:layout_constraintBottom_toBottomOf="@id/fragmentFavoriteBackground"
-                        app:layout_constraintStart_toStartOf="@id/fragmentFavoriteBackground" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -66,6 +54,6 @@
             app:itemList="@{viewModel.movieGridPresentationList}"
             app:spacing="@{12}" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
 </layout>
