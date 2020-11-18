@@ -115,7 +115,6 @@
             android:id="@+id/fragmentMovieDetailBottomFavoriteButton"
             android:layout_width="200dp"
             android:layout_height="45dp"
-            android:background="@drawable/rounded_rect_stroked"
             android:layout_gravity="center"
             android:textOff="@string/button_favorite_off"
             android:textOn="@string/button_favorite_on"
