@@ -1,8 +1,6 @@
 package com.alperb.yoyocinema.di
 
 import android.app.Application
-import android.content.Context
-import com.alperb.yoyocinema.feature.splash.SplashActivity
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -21,8 +19,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun homeComponent(): HomeComponent.Factory
-
-    fun inject(activity: SplashActivity)
 
     @Component.Factory
     interface Factory {
